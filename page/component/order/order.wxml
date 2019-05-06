@@ -1,0 +1,42 @@
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'onTop' : ''}}" data-current="0" bindtap="swichNav">待服务</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'onTop' : ''}}" data-current="1" bindtap="swichNav">待支付</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'onTop' : ''}}" data-current="2" bindtap="swichNav">已完成</view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+
+  <swiper-item>
+    <view class='projectbox'>
+      <scroll-view class="hot-box" scroll-y="true">
+        <view class="orderDetails" wx:for="{{alreadyOrder}}" wx:key=" ">
+          <view class="orderListTitle">
+            <text class="userName">{{item.name}}</text>
+
+          </view>
+          <view class="orderListDetails">
+            <view class="productImg">
+              <image src="{{item.url}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productTitle">扫地</view>
+              <view class="productTime">预定时间: {{item.time}}</view>
+              <text class="productPrice">{{item.money}} </text>
+              <text class="danwei">以太币</text>
+            </view>
+          </view>
+          <view class="address">地址：{{item.status}}</view>
+          <button class="btn">取消订单</button>
+        </view>
+      </scroll-view>
+    </view>
+  </swiper-item>
+
+  <swiper-item>
+    <view>nifashao</view>
+  </swiper-item>
+
+  <swiper-item>
+    <view>阿非凡的</view>
+  </swiper-item>
+</swiper>

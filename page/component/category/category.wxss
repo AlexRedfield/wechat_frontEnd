@@ -1,0 +1,193 @@
+@import '../../common/common.wxss';
+
+.swiper-tab{ height: 30px; line-height: 30px; background: #FFF; display: flex; position: relative; z-index: 2; border-bottom: 1px solid #F4F4F4; flex-direction:row; justify-content:center; align-items:center;}
+.swiper-tab-list{ margin: 0 20px;  padding: 0 4px; font-size: 28rpx; font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif }
+.onTop{ border-bottom: 1px solid #AB956D; color: #AB956D; }
+
+page,.main{
+    height: 100%;
+}
+.categroy-left{
+    float: left;
+    width: 150rpx;
+    height: 100%;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+}
+.categroy-left .cate-list{
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    border-left: 3px solid #fff;
+}
+.categroy-left .cate-list.on{
+    color: #AB956D;
+    border-color: #AB956D;
+}
+.categroy-right{
+    float: right;
+    width: 600rpx;
+    height: 100%;
+    overflow: hidden;
+    
+}
+.cate-box{
+    height: 100%;
+    padding:40rpx;
+    box-sizing: border-box;
+}
+.cate-box .cate-banner image{
+    display: block;
+    width: 100%;
+    height: 190rpx;
+}
+.cate-title{
+    position: relative;
+    height: 30rpx;
+    line-height: 30rpx;
+    padding:30rpx 0 55rpx;
+    text-align: center;
+    color: #AB956D;
+    font-size: 28rpx;
+}
+.cate-title::before{
+    position: absolute;
+    left: 130rpx;
+    top: 43rpx;
+    content: '';
+    width: 70rpx;
+    height: 4rpx;
+    background: #AB956D;
+}
+.cate-title::after{
+    position: absolute;
+    right: 130rpx;
+    top: 43rpx;
+    content: '';
+    width: 70rpx;
+    height: 4rpx;
+    background: #AB956D;
+}
+
+.product-list{
+    display: inline-block;
+    width: 160rpx;
+    height: 160rpx;
+    text-align: center;
+    margin:0 20rpx 20rpx 0;
+    font-size: 24rpx;
+}
+.product-list image{
+    width: 80rpx;
+    height: 80rpx;
+    margin-bottom: 20rpx;
+}
+.product-list:nth-child(3n){
+    margin-right: 0;
+}
+
+.projectbox {
+  padding: 0rpx 20rpx;
+  position: relative;
+}
+.headingtext {
+  font-size: 40rpx;
+  color: #000;
+  margin-top: 50rpx;
+  display: block;
+  letter-spacing: 2rpx;
+  font-weight: 900;
+}
+
+.project {
+  width: 650rpx;
+  height: 180rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  /* box-shadow: 0px 2px 5px #dfdede; */
+  position: relative;
+  border-bottom: 2rpx dashed #efeff1;
+
+}
+
+.headimage {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-left: 0rpx;
+  margin-top: 15rpx;
+  /* border:1rpx solid #ffd92e; */
+}
+
+.projecttext {
+  position: absolute;
+  top: 15rpx;
+  left: 180rpx;
+  z-index: 0;
+}
+
+.biaoti {
+  font-size: 30rpx;
+  color: #000;
+  display: block;
+}
+
+.jianjie {
+  font-size: 25rpx;
+  color: #8f8888;
+  display: block;
+  margin-right: 110rpx;
+  padding-top: -5rpx;
+  line-height: 16px;
+}
+
+.field {
+  font-size: 25rpx;
+  color: #AB956D;
+  display: block;
+  margin-top: 35rpx;
+  position: absolute;
+  top: 75rpx;
+  left: 0rpx;
+  z-index: 1;
+}
+
+ .num {
+
+  font-size: 35rpx;
+  color:crimson;
+  display: block;
+  margin-top: 35rpx;
+  position: absolute;
+  top: 90rpx;
+  left: 400rpx;
+  z-index: 1;
+} 
+
+ .danwei {
+  font-size: 20rpx;
+  color:crimson;
+} 
+
+.line1 {
+  border-top: 2rpx solid #e1e1e1;
+  width: 100%;
+  height: 1rpx;
+  display: block;
+  margin-top: 12rpx;
+}
+.shop {
+  width: 55rpx;
+  height: 55rpx;
+}
+
+.owner {
+  display: block;
+  position: absolute;
+  top: 10rpx;
+  left: 53rpx;
+  z-index: 1;
+  width:150rpx;
+}

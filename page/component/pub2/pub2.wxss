@@ -1,0 +1,117 @@
+/* pages/pagepublication/pagepublication.wxss */
+
+/*导航 问题：居中问题 */
+
+.navigation {
+  text-align: center;
+  border-bottom: 2rpx solid #e1e1e1;
+  padding-bottom: 65rpx;
+}
+
+/*返回图片  */
+
+.return {
+  color: #ffd92e;
+  font-size: 30rpx;
+  float: left;
+  padding-left: 40rpx;
+}
+
+
+/*发布消息按钮  */
+
+.publication {
+  color: #ffd92e;
+  font-size: 30rpx;
+  float: right;
+  padding-right: 40rpx;
+}
+
+/*发布内容盒子部分  */
+
+.heading {
+  margin-top: 10rpx;
+  margin-bottom: 5rpx;
+}
+
+/*题目  */
+
+.title1 {
+  font-size: 30rpx;
+  color: #302F2F;
+  padding-left: 40rpx;
+  display: block;
+  padding-top: 20rpx;
+  padding-bottom: 15rpx;
+}
+
+.textcolor{
+  color: #e1e1e1;
+  font-size: 30rpx;
+}
+
+.line1 {
+  border-top: 2rpx solid #e1e1e1;
+  width: 100%;
+  height: 1rpx;
+  display: block;
+  margin-top: 12rpx;
+}
+
+/*底部盒子  */
+
+.bottom {
+  position: fixed;
+  bottom: 10px;
+  
+}
+
+/*底部分割线  */
+
+.bottomline {
+  border-top: 2rpx solid #e1e1e1;
+  width: 750rpx;
+  height: 1rpx;
+  display: block;
+}
+
+/*拍照图标  */
+
+.photo {
+  width: 70rpx;
+  height: 70rpx;
+  padding-right: 40rpx;
+  padding-top: 8rpx;
+  float: right;
+}
+
+.pub {
+  width: 300rpx;
+  height: 80rpx;
+  font-size: 35rpx;
+  color: #AB956D;
+  display: flex;
+  justify-content:center;
+}
+.ownPhoto {
+  position: absolute;
+  width: 250rpx;
+  height: 250rpx;
+  bottom: 220rpx;
+  left:10rpx;
+  padding-right: 200rpx;
+  padding-bottom: 0rpx;
+  margin-top: 50rpx;
+  float: right;
+}
+
+.photoLogo {
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  bottom: 450rpx;
+  padding-right: 200rpx;
+  padding-bottom: 0rpx;
+  margin-top: 50rpx;
+  float: right;
+}

@@ -1,0 +1,33 @@
+<view class='heading'>
+  <input placeholder-class='textcolor' class='title1' placeholder='服务名称' bindinput="nameHandler" maxlength="40"></input>
+  <image class='line1'></image>
+  <!--简介  -->
+  <input placeholder-class='textcolor' class='title1' placeholder='费用(以太币)' bindinput="priceHandler"></input>
+  <image class='line1'></image>
+
+  <picker class='title1' type="number" bindchange="bindPickerChange" range="{{array}}">
+    <view class="picker">
+      服务类型 {{array[index]}}
+    </view>
+  </picker>
+  <image class='line1'></image>
+
+
+  <!--活动介绍  -->
+  <textarea placeholder-class='textcolor' class='title1' placeholder='任务内容及备注' bindinput="infoHandler"></textarea>
+
+  <!-- <image class='photoLogo' src='/image/photo.png' bindtap='chooseImage'></image>  -->
+
+  <image class='ownPhoto' src='{{imgSrc}}'></image>
+
+</view>
+
+
+<!--底部栏  -->
+<view class='bottom'>
+
+  <image class='bottomline'></image>
+  <image class='photo' src='/image/photo.png' bindtap='chooseImage'></image>
+  <button class='pub' bindtap='postService'>确认发布</button>
+</view>
+<!-- <image class='ownPhoto' src='{{imgSrc}}' ></image> -->
