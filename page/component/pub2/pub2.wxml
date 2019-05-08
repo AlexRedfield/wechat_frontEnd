@@ -14,7 +14,7 @@
 
 
   <!--活动介绍  -->
-  <textarea placeholder-class='textcolor' class='title1' placeholder='任务内容及备注' bindinput="infoHandler"></textarea>
+  <textarea placeholder-class='textcolor' class='title1' placeholder='请填写您的收费标准、服务内容、服务流程等。详细的服务介绍可以吸引更多客户下单' bindinput="infoHandler"></textarea>
 
   <!-- <image class='photoLogo' src='/image/photo.png' bindtap='chooseImage'></image>  -->
 

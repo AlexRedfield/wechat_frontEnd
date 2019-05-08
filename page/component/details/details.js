@@ -3,13 +3,14 @@ Page({
   data:{
     goods: {
       id: 1,
-      image: '/image/goods1.png',
+      image: '1557233475945_288.png',
       title: '新鲜梨花带雨',
       price: 0.01,
       user: '李小二',
       detail: '这里是梨花带雨详情。',
       parameter: '125g/个',
-      service: '不支持退货'
+      service: '不支持退货',
+      avatar:''
     },
     num: 1,
     totalNum: 0,
@@ -20,9 +21,14 @@ Page({
   },
 
   onLoad: function (options) {
+    //console.log(options.avatar)
       this.setData({
         'goods.image':options.img,
         'goods.user': options.user,
+        'goods.avatar': options.avatar,
+        'goods.detail': options.info,
+        'goods.title': options.title,
+        
       })
   },
 

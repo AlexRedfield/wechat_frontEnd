@@ -5,6 +5,7 @@
 
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
 
+  <!-- 我是顾客 -->
   <swiper-item>
     <view class="main">
       <view class="categroy-left">
@@ -12,40 +13,26 @@
       </view>
 
       <scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true" bindscroll="scrollMove">
-        <block wx:if="{{curIndex==0}}">
+        <block wx:if="{{curIndex==0}}" wx:for="{{taskInfo}}" wx:key="index">
           <view class='projectbox'>
             <!--第一部分  -->
             <view class='project'>
-              <navigator url='../details/details?img={{taskImg}}&user={{user}}'>
-                <image class='headimage' src='{{taskImg}}'></image>
+              <!-- <navigator url='../details/details?img={{taskImg}}&user={{user}}'> -->
+              <navigator url='../details/details?img={{item.img}}&user={{item.nickname}}&info={{item.info}}&title={{item.name}}&avatar={{item.avatar}}&price={{item.price}}'>
+                <image class='headimage' src='/img/{{item.img}}'></image>
                 <view class='projecttext'>
-                  <text class='biaoti'>膨胀的小人物</text>
-                  <text class='jianjie'>用文字的力量，改变潮水的方向</text>
+                  <text class='biaoti'>{{item.name}}</text>
+                  <text class='jianjie'>{{item.info}}</text>
                   <image class='line1'></image>
 
                   <view class='field'>
                     <image class='shop' src='/image/shop.jpg'></image>
-                    <text class='owner'>{{user}}</text>
+                    <text class='owner'>{{item.nickname}}</text>
                   </view>
 
                 </view>
 
-                <view class='num'>15
-                  <text class='danwei'>以太币</text>
-                </view>
-              </navigator>
-            </view>
-            <!--第二部分  -->
-            <view class='project'>
-              <navigator url='../list/list'>
-                <image class='headimage' src='http://img.zcool.cn/community/01ca005b02587ba801218cf4fe698a.gif'></image>
-                <view class='projecttext'>
-                  <text class='biaoti'>膨胀的小人物</text>
-                  <text class='jianjie'>用文字的力量，改变潮水的方向</text>
-                  <text class='field'>电影 10W+参与</text>
-                </view>
-
-                <view class='num'>15
+                <view class='num'>{{item.price}}
                   <text class='danwei'>以太币</text>
                 </view>
               </navigator>
@@ -53,11 +40,42 @@
 
           </view>
         </block>
+
+
+        <block wx:if="{{curIndex==2}}" wx:for="{{taskInfo}}" wx:key="index">
+          <view class='projectbox'>
+            <!--第一部分  -->
+            <view class='project'>
+              <!-- <navigator url='../details/details?img={{taskImg}}&user={{user}}'> -->
+              <navigator url='../details/details?img={{item.img}}&user={{item.nickname}}&info={{item.info}}&title={{item.name}}&avatar={{item.avatar}}&price={{item.price}}'>
+                <image class='headimage' src='/img/{{item.img}}'></image>
+                <view class='projecttext'>
+                  <text class='biaoti'>{{item.name}}</text>
+                  <text class='jianjie'>{{item.info}}</text>
+                  <image class='line1'></image>
+
+                  <view class='field'>
+                    <image class='shop' src='/image/shop.jpg'></image>
+                    <text class='owner'>{{item.nickname}}</text>
+                  </view>
+
+                </view>
+
+                <view class='num'>{{item.price}}
+                  <text class='danwei'>以太币</text>
+                </view>
+              </navigator>
+            </view>
+
+          </view>
+        </block>
+
       </scroll-view>
 
     </view>
   </swiper-item>
 
+  <!-- 我是商家 -->
   <swiper-item>
     <view class="main">
       <view class="categroy-left">

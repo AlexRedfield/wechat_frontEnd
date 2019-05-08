@@ -1,12 +1,12 @@
 Page({
     data: {
       category: [
-          {name:'果味',id:'guowei'},
-          {name:'蔬菜',id:'shucai'},
-          {name:'炒货',id:'chaohuo'},
-          {name:'点心',id:'dianxin'},
-          {name:'粗茶',id:'cucha'},
-          {name:'淡饭',id:'danfan'}
+        { name:'保洁清洗',id:'guowei'},
+        { name:'房屋维修',id:'shucai'},
+        { name:'电器维修',id:'chaohuo'},
+        { name:'健康服务',id:'dianxin'},
+        { name:'上门安装',id:'cucha'},
+        { name:'便民服务',id:'danfan'}
       ],
       user:"隔壁老王",
       detail:[],
@@ -14,7 +14,8 @@ Page({
       isScroll: true,
       toView: 'guowei',
       currentTab:0,
-      taskImg:"http://img.zcool.cn/community/01ca005b02587ba801218cf4fe698a.gif"
+      taskImg:"http://img.zcool.cn/community/01ca005b02587ba801218cf4fe698a.gif",
+      taskInfo:[]
     },
   //动态计算高度
     onLoad: function (options) {
@@ -30,6 +31,8 @@ Page({
           });
         }
       });
+
+
     },
     onReady(){
         var self = this;
@@ -43,7 +46,23 @@ Page({
                   detail: res.data
                 })
             }
-        });
+        }),
+
+      wx.request({
+        url: 'http://localhost:8080/' + 'sql',
+        method: 'get',
+
+        data: {
+          
+        },
+        success: res => {
+          console.log(res.data)
+          self.setData({
+            //detail : res.data.result
+            taskInfo: res.data
+          })
+        }
+      })
         
     },
     switchTab(e){
@@ -56,16 +75,17 @@ Page({
   scrollMove: function (e) {
     //获取滚动距离
     var left = e.detail.scrollTop;
-    console.log(left)
+    //console.log(left)
     //将滚动距离（位移）动态添给滚动条的left
     this.setData({
       viewleft: left
     })
+    /*
     if(left>500&&left<928) {
       this.setData({
         curIndex: 1
       })
-    }
+    }*/
   },
   swichNav: function (e) {
 

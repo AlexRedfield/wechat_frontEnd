@@ -12,11 +12,12 @@ Page({
     startDate: "",   //最早日期
     lastDate: "",    //最迟日期
     imgSrc: "",
-    array: ['保洁清洗', '房屋维修', '家电维修', '数码维修', '健康服务', '上门安装', '便民服务'],
+    array: ['保洁清洗', '房屋维修', '电器维修', '健康服务', '上门安装', '便民服务'],
     index: "",
     name: "",
     price: "",
     info: "",
+    taskImg: "",
     filePath:"",
     address: {
       name: '',
@@ -111,37 +112,94 @@ Page({
 
   },
 
+  //选择文件
+  chooseImage: function () {
+
+    var _this = this;
+    wx.chooseImage({
+      success: function (res) {
+        console.log(res)
+        _this.setData({
+          imgSrc: res.tempFilePaths
+        })
+        var tempFilePaths = res.tempFilePaths
+        console.log(tempFilePaths[0])
+        let img = wx.getFileSystemManager().readFileSync(tempFilePaths[0], 'base64');
+
+        wx.request({
+          url: 'http://localhost:8080/' + 'upload',
+          method: 'post',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: {
+            imgData: img,
+          },
+          success: res => {
+            console.log(res.data)
+            _this.data.taskImg = res.data
+          }
+        })
+      },
+    })
+  },
+
+
   /**
    * 用户点击右上角发布服务
    */
 
   postTask: function () {
     if (this.data.address.name && this.data.address.phone && this.data.address.detail) {
-      wx.request({
-        url: 'http://localhost:8080/' + 'postTask',
-        method: 'post',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {
-          name: this.data.name,
-          worker: app.globalData.openid,
-          customer: app.globalData.openid,
-          flag: 1,
-          price: this.data.price,
-          sort: this.data.array[this.data.index],
-          date: util.timeConvertTimeStamp(this.data.startTime, this.data.setTime),
-          info: this.data.info,
-          img:"",
-          nickname:this.data.address.name,
-          phone: this.data.address.phone,
-          address: this.data.address.detail,
-          avatar: this.data.thumb
-        },
-        success: res => {
-          //console.log(res.data)
-        }
-      })
+      if (!(this.data.name && this.data.price && this.data.index != undefined && this.data.startTime && 
+      this.data.setTime)){
+        wx.showModal({
+          title: '提示',
+          content: '请填写完整信息',
+          showCancel: false
+        })
+      }
+
+      else{ 
+        if (!this.data.taskImg) this.data.taskImg = this.data.thumb
+        wx.request({
+          url: 'http://localhost:8080/' + 'postTask',
+          method: 'post',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: {
+            name: this.data.name,
+            worker: app.globalData.openid,
+            customer: app.globalData.openid,
+            flag: 1,
+            price: this.data.price,
+            sort: this.data.array[this.data.index],
+            date: util.timeConvertTimeStamp(this.data.startTime, this.data.setTime),
+            info: this.data.info,
+            img: this.data.taskImg,
+            nickname:this.data.address.name,
+            phone: this.data.address.phone,
+            address: this.data.address.detail,
+            avatar: this.data.thumb
+          },
+          success: res => {
+            //console.log(res.data)
+            wx.showToast({
+              title: '成功发布',
+              icon: 'success',
+              duration: 2000,
+              success: function () {
+                setTimeout(function () {
+                  //要延时执行的代码
+                  wx.navigateBack()
+                }, 1200) //延迟时间
+              }
+            })
+
+          }
+        })
+      }
     }
     else {
       wx.showModal({

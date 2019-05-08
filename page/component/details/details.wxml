@@ -1,6 +1,6 @@
 <view class="main">
     <view class="goods-box">
-        <image src="{{goods.image}}" class="goods-thumb"></image>
+        <image src="/img/{{goods.image}}" class="goods-thumb"></image>
         
         <navigator open-type="switchTab" url="../cart/cart">
             <view class="carts-icon {{scaleCart?'on':''}}">
@@ -17,7 +17,7 @@
         </view>
         <image wx:if="{{show}}" src="/image/cart1.png" class="to-carts-icon"></image>
         <view class="goods-stock">
-          <image class="user-icon" src="{{goods.image}}"></image>
+          <image class="user-icon" src="{{goods.avatar}}"></image>
         {{goods.user}}
         </view>
         <view class="goods-title">{{goods.title}}</view>

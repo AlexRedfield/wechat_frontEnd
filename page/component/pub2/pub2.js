@@ -8,13 +8,14 @@ Page({
    */
   data: {
     imgSrc: "",
-    array: ['保洁清洗', '房屋维修', '家电维修', '数码维修', '健康服务', '上门安装', '便民服务'],
+    array: ['保洁清洗', '房屋维修', '电器维修', '健康服务', '上门安装', '便民服务'],
     index: "",
     name: "",
     price: "",
     info: "",
     filePath: "",
     taskImg:"",
+    tempFilePaths:"",
     address: {
       name: '',
       phone: '',
@@ -98,31 +99,53 @@ Page({
   postService: function () {
     if (this.data.address.name && this.data.address.phone && this.data.address.detail)
     {
-      wx.request({
-        url: 'http://localhost:8080/' + 'postTask',
-        method: 'post',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {
-          name: this.data.name,
-          worker: app.globalData.openid,
-          customer: app.globalData.openid,
-          flag: 0,
-          date: 0,
-          price: this.data.price,
-          sort: this.data.array[this.data.index],
-          info: this.data.info,
-          img: this.data.taskImg,
-          address: "",
-          nickname: this.data.address.name,
-          phone: this.data.address.phone,
-          avatar: this.data.thumb
-        },
-        success: res => {
-          //console.log(res.data)
-        }
-      })
+      if (!(this.data.name && this.data.price && this.data.index!=undefined && this.data.info && this.data.tempFilePaths)) {
+        
+        wx.showModal({
+          title: '提示',
+          content: '请填写完整信息',
+          showCancel: false
+        })
+      }
+
+      else { 
+        wx.request({
+          url: 'http://localhost:8080/' + 'postTask',
+          method: 'post',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: {
+            name: this.data.name,
+            worker: app.globalData.openid,
+            customer: app.globalData.openid,
+            flag: 0,
+            date: 0,
+            price: this.data.price,
+            sort: this.data.array[this.data.index],
+            info: this.data.info,
+            img: this.data.taskImg,
+            address: "",
+            nickname: this.data.address.name,
+            phone: this.data.address.phone,
+            avatar: this.data.thumb
+          },
+          success: res => {
+            //console.log(res.data)
+            wx.showToast({
+              title: '成功发布',
+              icon: 'success',
+              duration: 2000,
+              success: function () {
+                setTimeout(function () {
+                  //要延时执行的代码
+                  wx.navigateBack()
+                }, 1200) //延迟时间
+              }
+            })
+          }
+        })
+      }
     }
     else{
         wx.showModal({
@@ -144,9 +167,9 @@ Page({
         _this.setData({
           imgSrc: res.tempFilePaths
         })
-        var tempFilePaths = res.tempFilePaths
-        console.log(tempFilePaths[0])
-        let img =wx.getFileSystemManager().readFileSync(tempFilePaths[0], 'base64');
+        _this.data.tempFilePaths = res.tempFilePaths
+        console.log(_this.data.tempFilePaths[0])
+        let img = wx.getFileSystemManager().readFileSync(_this.data.tempFilePaths[0], 'base64');
 
         wx.request({
           url: 'http://localhost:8080/' + 'upload',
