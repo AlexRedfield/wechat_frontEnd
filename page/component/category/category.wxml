@@ -13,26 +13,27 @@
       </view>
 
       <scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true" bindscroll="scrollMove">
-        <block wx:if="{{curIndex==0}}" wx:for="{{taskInfo}}" wx:key="index">
+      <block wx:for="{{[0, 1, 2, 3, 4, 5]}}" wx:key="index">
+        <block wx:if="{{curIndex==item}}" wx:for="{{taskInfos[item]}}" wx:key="index" wx:for-item="val">
           <view class='projectbox'>
             <!--第一部分  -->
             <view class='project'>
               <!-- <navigator url='../details/details?img={{taskImg}}&user={{user}}'> -->
-              <navigator url='../details/details?img={{item.img}}&user={{item.nickname}}&info={{item.info}}&title={{item.name}}&avatar={{item.avatar}}&price={{item.price}}'>
-                <image class='headimage' src='/img/{{item.img}}'></image>
+              <navigator url='../details/details?img={{val.img}}&user={{val.nickname}}&info={{val.info}}&title={{val.name}}&avatar={{val.avatar}}&price={{val.price}}'>
+                <image class='headimage' src='/img/{{val.img}}'></image>
                 <view class='projecttext'>
-                  <text class='biaoti'>{{item.name}}</text>
-                  <text class='jianjie'>{{item.info}}</text>
+                  <text class='biaoti'>{{val.name}}</text>
+                  <text class='jianjie'>{{val.info}}</text>
                   <image class='line1'></image>
 
                   <view class='field'>
                     <image class='shop' src='/image/shop.jpg'></image>
-                    <text class='owner'>{{item.nickname}}</text>
+                    <text class='owner'>{{val.nickname}}</text>
                   </view>
 
                 </view>
 
-                <view class='num'>{{item.price}}
+                <view class='num'>{{val.price}}
                   <text class='danwei'>以太币</text>
                 </view>
               </navigator>
@@ -40,35 +41,9 @@
 
           </view>
         </block>
+</block>
 
 
-        <block wx:if="{{curIndex==2}}" wx:for="{{taskInfo}}" wx:key="index">
-          <view class='projectbox'>
-            <!--第一部分  -->
-            <view class='project'>
-              <!-- <navigator url='../details/details?img={{taskImg}}&user={{user}}'> -->
-              <navigator url='../details/details?img={{item.img}}&user={{item.nickname}}&info={{item.info}}&title={{item.name}}&avatar={{item.avatar}}&price={{item.price}}'>
-                <image class='headimage' src='/img/{{item.img}}'></image>
-                <view class='projecttext'>
-                  <text class='biaoti'>{{item.name}}</text>
-                  <text class='jianjie'>{{item.info}}</text>
-                  <image class='line1'></image>
-
-                  <view class='field'>
-                    <image class='shop' src='/image/shop.jpg'></image>
-                    <text class='owner'>{{item.nickname}}</text>
-                  </view>
-
-                </view>
-
-                <view class='num'>{{item.price}}
-                  <text class='danwei'>以太币</text>
-                </view>
-              </navigator>
-            </view>
-
-          </view>
-        </block>
 
       </scroll-view>
 

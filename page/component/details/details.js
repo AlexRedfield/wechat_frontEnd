@@ -28,7 +28,7 @@ Page({
         'goods.avatar': options.avatar,
         'goods.detail': options.info,
         'goods.title': options.title,
-        
+        'goods.price': options.price,
       })
   },
 

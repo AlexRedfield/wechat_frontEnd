@@ -46,9 +46,39 @@ function timeConvertTimeStamp(date, time) {
   return stamp1 / 1000;
 }
 
+function reqTaskInfo(flag, sort){
+  var promise = new Promise(function (resolve, reject) {
+    wx.request({
+      url: 'http://localhost:8080/' + 'sql',
+      method: 'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        flag: flag,
+        sort: sort
+      },
+      success: res => {
+        console.log(res.data)
+        resolve(res)
+      }
+    })
+  });
+  promise.then(function (value) {
+    //console.log(parseInt(value)+2);
+    return value;
+    // success
+  }, function (err) {
+    // failure
+    return err;
+  });
+  return promise;
+}
+
 module.exports = {
   formatTime: formatTime,
   getDateStr: getDateStr,
   TimeStampConvertTime: TimeStampConvertTime,
-  timeConvertTimeStamp: timeConvertTimeStamp
+  timeConvertTimeStamp: timeConvertTimeStamp,
+  reqTaskInfo: reqTaskInfo
 }

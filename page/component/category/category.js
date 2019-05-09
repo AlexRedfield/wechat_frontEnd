@@ -1,3 +1,4 @@
+var util = require('../../../util/util.js');
 Page({
     data: {
       category: [
@@ -15,13 +16,17 @@ Page({
       toView: 'guowei',
       currentTab:0,
       taskImg:"http://img.zcool.cn/community/01ca005b02587ba801218cf4fe698a.gif",
-      taskInfo:[]
+      taskInfo:[],
+      taskInfo2: [],
+      taskInfos:[]
     },
   //动态计算高度
     onLoad: function (options) {
       var that = this;
+
       /**
-       * 获取系统信息
+       * 获取系统信息]\
+       * 
        */
       wx.getSystemInfo({
         success: function (res) {
@@ -39,31 +44,32 @@ Page({
         wx.request({
             url:'http://www.gdfengshuo.com/api/wx/cate-detail.txt',
             success(res){
-                console.log(res.data)
-                console.log(res.data[0])
+                //console.log(res.data)
+                //console.log(res.data[0])
                 self.setData({
                     //detail : res.data.result
                   detail: res.data
                 })
             }
-        }),
+        });
+      let flag = 0, sort = "保洁清洗";
+      for(let i=0;i<6;i++){
 
-      wx.request({
-        url: 'http://localhost:8080/' + 'sql',
-        method: 'get',
-
-        data: {
-          
-        },
-        success: res => {
-          console.log(res.data)
+      
+        util.reqTaskInfo(flag, self.data.category[i].name).then(res=>{
+          let index=i;
+          var param = {};
+          var string = 'taskInfos[' + i + ']';
+          param[string] = res.data;
+          self.setData(param);
+          /*
           self.setData({
-            //detail : res.data.result
-            taskInfo: res.data
-          })
-        }
-      })
-        
+            //taskInfo: res.data,
+            "taskInfos[0]": res.data
+            //item:res.data
+          })*/
+        })
+    }
     },
     switchTab(e){
         this.setData({
