@@ -97,6 +97,7 @@ Page({
    */
 
   postService: function () {
+    var _this = this;
     if (this.data.address.name && this.data.address.phone && this.data.address.detail)
     {
       if (!(this.data.name && this.data.price && this.data.index!=undefined && this.data.info && this.data.tempFilePaths)) {
@@ -107,44 +108,58 @@ Page({
           showCancel: false
         })
       }
-
+      
       else { 
-        wx.request({
-          url: 'http://localhost:8080/' + 'postTask',
-          method: 'post',
-          header: {
-            "Content-Type": "application/x-www-form-urlencoded"
+        wx.showModal({
+          title: '提示',
+          content: '发布服务将花费5以太币，是否确定发布',
+          showCancel: true,
+          success: function (res) {
+            if (res.cancel) {
+              //点击取消,默认隐藏弹框
+            } else {
+              wx.request({
+                url: 'http://localhost:8080/' + 'postTask',
+                method: 'post',
+                header: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                },
+                data: {
+                  name: _this.data.name,
+                  worker: app.globalData.openid,
+                  customer: app.globalData.openid,
+                  flag: 0,
+                  date: 0,
+                  price: _this.data.price,
+                  sort: _this.data.array[_this.data.index],
+                  info: _this.data.info,
+                  img: _this.data.taskImg,
+                  address: "",
+                  nickname: _this.data.address.name,
+                  phone: _this.data.address.phone,
+                  avatar: _this.data.thumb
+                },
+                success: res => {
+                  //console.log(res.data)
+                  wx.showToast({
+                    title: '成功发布',
+                    icon: 'success',
+                    duration: 2000,
+                    success: function () {
+                      setTimeout(function () {
+                        //要延时执行的代码
+                        wx.navigateBack()
+                      }, 1200) //延迟时间
+                    }
+                  })
+                }
+              })
+            }
           },
-          data: {
-            name: this.data.name,
-            worker: app.globalData.openid,
-            customer: app.globalData.openid,
-            flag: 0,
-            date: 0,
-            price: this.data.price,
-            sort: this.data.array[this.data.index],
-            info: this.data.info,
-            img: this.data.taskImg,
-            address: "",
-            nickname: this.data.address.name,
-            phone: this.data.address.phone,
-            avatar: this.data.thumb
-          },
-          success: res => {
-            //console.log(res.data)
-            wx.showToast({
-              title: '成功发布',
-              icon: 'success',
-              duration: 2000,
-              success: function () {
-                setTimeout(function () {
-                  //要延时执行的代码
-                  wx.navigateBack()
-                }, 1200) //延迟时间
-              }
-            })
-          }
+          fail: function (res) { },//接口调用失败的回调函数
+          complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
         })
+
       }
     }
     else{

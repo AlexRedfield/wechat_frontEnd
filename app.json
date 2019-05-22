@@ -14,7 +14,7 @@
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "零食商贩",
+    "navigationBarTitleText": "区块链家政服务",
     "navigationBarBackgroundColor": "#AB956D",
     "backgroundColor": "#eeeeee",
     "enablePullDownRefresh": true
@@ -41,7 +41,7 @@
         "pagePath": "page/component/order/order",
         "iconPath": "image/32.png",
         "selectedIconPath": "image/31.png",
-        "text": "购物车"
+        "text": "订单"
       },
       {
         "pagePath": "page/component/user/user",

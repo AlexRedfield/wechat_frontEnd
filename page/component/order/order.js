@@ -26,6 +26,18 @@ Page({
 
   },
 
+  call1: function (e) {
+    var phonenum = e.currentTarget.dataset.item
+    console.log(phonenum)
+
+    /*
+    wx: wx.makePhoneCall({
+      phoneNumber: phonenum,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })*/
+  },
   swichNav: function (e) {
 
     var that = this;

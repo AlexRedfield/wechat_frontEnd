@@ -8,13 +8,12 @@
     border-bottom: 30rpx solid #ededed;
 }
 .goods-box .goods-thumb{
-    width: 300rpx;
-    height: 300rpx;
+    width: 330rpx;
+    height: 330rpx;
     margin: 35rpx 0 125rpx;
 }
 
 .user-icon{
-
     width: 50rpx;
     height: 50rpx;
 }
@@ -88,7 +87,8 @@
 }
 .goods-box .goods-operation{
     position: relative;
-    width: 100%;
+    align-items: center;
+
     height: 100rpx;
     line-height: 100rpx;
     padding: 0 50rpx;

@@ -26,7 +26,7 @@
             </view>
           </view>
           <view class="address">地址：{{item.status}}</view>
-          <button class="btn">取消订单</button>
+          <button class="btn" bindtap='call1' data-item="{{item.status}}">取消订单</button>
         </view>
       </scroll-view>
     </view>
