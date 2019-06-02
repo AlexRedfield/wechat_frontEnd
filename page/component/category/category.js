@@ -54,8 +54,6 @@ Page({
         });
       let flag = 0, sort = "保洁清洗";
       for(let i=0;i<6;i++){
-
-      
         util.reqTaskInfo(flag, self.data.category[i].name).then(res=>{
           let index=i;
           var param = {};

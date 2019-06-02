@@ -6,7 +6,7 @@
     </view>
     <view class="address-box">
         <view class="address-manage">
-            <navigator url="/page/component/address/address">地址管理</navigator>
+            <navigator url="/page/component/address/address">个人信息管理</navigator>
         </view>
         <view wx:if="{{hasAddress}}" class="address-list">
             <view>{{address.name}}</view>
@@ -15,7 +15,11 @@
         </view>
     </view>
     <view class="orders-box">
-        <view class="orders">我的订单</view>
+        <view class="orders">用户余额
+ 
+        <text class="sum">50以太币</text>
+        </view>
+
         <view class="orders-list" wx:for="{{orders}}" wx:key="index">
             <view class="orders-number">订单编号：{{item.number}}</view>
             <view class="orders-detail">

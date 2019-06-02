@@ -1,4 +1,5 @@
 // page/component/details/details.js
+const app = getApp();
 var util = require('../../../util/util.js');
 Page({
   data:{
@@ -13,10 +14,13 @@ Page({
       service: '不支持退货',
       avatar:''
     },
+    startTime:"",
     startDate: "",   //最早日期
     lastDate: "",    //最迟日期
     setTime: "",    //选择的时间
-    address:"",
+    address:"",   //用户保存的地址
+    userAddress:"",
+    nickname:"",
     num: 1,
     totalNum: 0,
     hasCarts: false,
@@ -34,6 +38,7 @@ Page({
         'goods.detail': options.info,
         'goods.title': options.title,
         'goods.price': options.price,
+        'goods.index':options.index,
       })
     
     var self=this;
@@ -42,6 +47,7 @@ Page({
       success: function (res) {
         self.setData({
           address: res.data.detail,
+          nickname:res.data.name
         })
       }
     })
@@ -52,6 +58,9 @@ Page({
   },
 
   order(){
+    //console.log(app.globalData.openid)
+    //console.log(this.data.goods.index)
+    var _this=this;
     if (!(this.data.startTime && this.data.setTime)) {
       wx.showModal({
         title: '提示',
@@ -69,15 +78,34 @@ Page({
             //点击取消,默认隐藏弹框
           } else {
             //点击确定
-            wx.showToast({
-              title: '成功预约',
-              icon: 'success',
-              duration: 2000,
-              success: function () {
-                setTimeout(function () {
-                  //要延时执行的代码
-                  wx.navigateBack()
-                }, 1200) //延迟时间
+            wx.request({
+              url: 'http://localhost:8080/' + 'order',
+              method: 'post',
+              header: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              },
+              data: {
+                customer: app.globalData.openid,
+                date: util.timeConvertTimeStamp(_this.data.startTime, _this.data.setTime),
+                //nickname: _this.data.address.name,
+                address: _this.data.address,
+                flag:0, //flag=0代表消费者预约
+                index: _this.data.goods.index,
+              },
+              success: res => {
+                //console.log(res.data)
+                wx.showToast({
+                  title: '成功预约',
+                  icon: 'success',
+                  duration: 2000,
+                  success: function () {
+                    setTimeout(function () {
+
+                      //返回上一页
+                      wx.navigateBack()
+                    }, 1200) //延迟时间
+                  }
+                })
               }
             })
             console.log("成功预约")
@@ -146,10 +174,15 @@ Page({
     })
   },
 
-
   bindTimeChange: function (e) {
     this.setData({
       setTime: e.detail.value
+    })
+  },
+
+  addressHandler: function (e) {
+    this.setData({
+      userAddress: e.detail.value
     })
   },
  

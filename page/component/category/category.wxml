@@ -19,7 +19,7 @@
             <!--第一部分  -->
             <view class='project'>
               <!-- <navigator url='../details/details?img={{taskImg}}&user={{user}}'> -->
-              <navigator url='../details/details?img={{val.img}}&user={{val.nickname}}&info={{val.info}}&title={{val.name}}&avatar={{val.avatar}}&price={{val.price}}'>
+              <navigator url='../details/details?img={{val.img}}&user={{val.nickname}}&info={{val.info}}&title={{val.name}}&avatar={{val.avatar}}&price={{val.price}}&index={{val.whatever}}'>
                 <image class='headimage' src='/img/{{val.img}}'></image>
                 <view class='projecttext'>
                   <text class='biaoti'>{{val.name}}</text>

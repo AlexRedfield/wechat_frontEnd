@@ -8,9 +8,9 @@
     border-bottom: 30rpx solid #ededed;
 }
 .goods-box .goods-thumb{
-    width: 330rpx;
-    height: 330rpx;
-    margin: 35rpx 0 125rpx;
+    width: 400rpx;
+    height: 400rpx;
+    margin: 35rpx 0 50rpx;
 }
 
 .user-icon{
@@ -92,7 +92,7 @@
     height: 100rpx;
     line-height: 100rpx;
     padding: 0 50rpx;
-    margin-bottom: 60rpx;
+    margin-bottom: 20rpx;
     box-sizing: border-box;
     border-radius: 50rpx;
     background: #AB956D;
@@ -132,6 +132,7 @@
 }
 .goods-price{
     font-size: 40rpx;
+
 }
 .goods-tab-nav{
     display: inline-block;

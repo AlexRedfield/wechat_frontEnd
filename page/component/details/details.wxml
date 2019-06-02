@@ -22,7 +22,7 @@
         {{goods.user}}
         </view>
         <view class="goods-title">{{goods.title}}</view>
-        <view class="goods-price">￥ {{goods.price}}</view>
+        <view class="goods-price">{{goods.price}} 以太币</view>
     </view>
     <view class="goods-tab-box">
         <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">服务详情</view>
@@ -31,7 +31,7 @@
         <view class="goods-content">
             <view wx:if="{{curIndex === 0}}">{{goods.detail}}</view>
             <view wx:if="{{curIndex === 1}}">
-              <input placeholder-class='textcolor'  placeholder='{{address}}' bindinput="priceHandler"></input>
+              <input placeholder-class='textcolor'  placeholder='{{address}}' bindinput="addressHandler"></input>
             </view>
             <view wx:if="{{curIndex === 2}}">
                 <picker class='title1' mode="date" value="{{startDate}}"  start="{{startDate}}" end="{{lastDate}}" bindchange="setStartTime">

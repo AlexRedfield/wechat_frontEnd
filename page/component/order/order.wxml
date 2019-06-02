@@ -19,14 +19,14 @@
               <image src="{{item.url}}" background-size="cover"></image>
             </view>
             <view class="productInfo">
-              <view class="productTitle">扫地</view>
+              <view class="productTitle">玻璃擦洗</view>
               <view class="productTime">预定时间: {{item.time}}</view>
               <text class="productPrice">{{item.money}} </text>
               <text class="danwei">以太币</text>
             </view>
           </view>
-          <view class="address">地址：{{item.status}}</view>
-          <button class="btn" bindtap='call1' data-item="{{item.status}}">取消订单</button>
+          <view class="address">地址：{{item.address}}</view>
+          <button class="btn" bindtap='call1' data-item="{{item.address}}">取消订单</button>
         </view>
       </scroll-view>
     </view>

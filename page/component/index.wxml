@@ -20,14 +20,15 @@
                 </navigator>
             </view>
         </view>
-        <view class="select-bottom">
-            <navigator url="list/list">
-                <image src="/image/s3.png"></image>
-            </navigator>
-        </view>
+        
+        <!-- <view class="select-bottom"> -->
+            <!-- <navigator url="list/list"> -->
+                <!-- <image src="/image/s3.png"></image> -->
+            <!-- </navigator> -->
+        <!-- </view> -->
     </view>
     <view class="newest">
-        <view class="newest-title"><text>最近新品</text></view>
+        <view class="newest-title"><text>热门服务</text></view>
         <view class="newest-box">
             <view class="newest-list">
                 <navigator url="details/details">
