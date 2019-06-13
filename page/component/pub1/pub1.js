@@ -162,7 +162,7 @@ Page({
       }
 
       else{ 
-        if (!this.data.taskImg) this.data.taskImg = this.data.thumb
+        if (!this.data.taskImg) this.data.taskImg = '132.jpg'
         wx.showModal({
           title: '提示',
           content: '发布服务将花费5以太币，是否确定发布',

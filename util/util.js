@@ -59,7 +59,7 @@ function reqTaskInfo(flag, sort){
         sort: sort
       },
       success: res => {
-        console.log(res.data)
+        //console.log(res.data)
         resolve(res)
       }
     })

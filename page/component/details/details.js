@@ -1,6 +1,7 @@
 // page/component/details/details.js
 const app = getApp();
 var util = require('../../../util/util.js');
+var user = require('../user/user.js');
 Page({
   data:{
     goods: {
@@ -100,9 +101,10 @@ Page({
                   duration: 2000,
                   success: function () {
                     setTimeout(function () {
-
+                      
                       //返回上一页
                       wx.navigateBack()
+
                     }, 1200) //延迟时间
                   }
                 })

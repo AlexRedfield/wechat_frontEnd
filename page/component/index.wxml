@@ -33,15 +33,15 @@
             <view class="newest-list">
                 <navigator url="details/details">
                     <image src="/image/s4.png"></image>
-                    <view class="newest-text"><text>瓜子 100g</text></view>
-                    <view class="newest-text"><text>￥ 0.01</text></view>
+                    <view class="newest-text"><text>衣物清洗 </text></view>
+                    <view class="newest-text"><text>30 以太币</text></view>
                 </navigator>
             </view>
             <view class="newest-list">
                 <navigator url="details/details">
                     <image src="/image/s5.png"></image>
-                    <view class="newest-text"><text>芹菜 半斤</text></view>
-                    <view class="newest-text"><text>￥ 0.02</text></view>
+                    <view class="newest-text"><text>手机修理</text></view>
+                    <view class="newest-text"><text>40 以太币</text></view>
                 </navigator>
             </view>
             <view class="newest-list">

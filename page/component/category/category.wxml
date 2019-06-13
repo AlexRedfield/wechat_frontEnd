@@ -45,7 +45,7 @@
 
 
 
-      </scroll-view>
+    </scroll-view>
 
     </view>
   </swiper-item>
@@ -58,27 +58,39 @@
       </view>
 
       <scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true" bindscroll="scrollMove">
-        <block wx:for="{{detail}}" wx:for-index wx:key="id">
-          <view id="{{item.id}}" class="cate-box">
-            <view class="cate-banner">
-              <image src="{{item.banner}}"></image>
-            </view>
-            <view class="cate-title">
-              <text>{{item.cate}}</text>
-            </view>
-            <view class="product">
-              <view class="product-list" wx:for="{{item.detail}}" wx:key="index" wx:for-item="val">
-                <navigator url="../list/list">
-                  <image src="{{val.thumb}}"></image>
-                  <view class="classname">
-                    <text>{{val.name}}</text>
+      <block wx:for="{{[0, 1, 2, 3, 4, 5]}}" wx:key="index">
+        <block wx:if="{{curIndex==item}}" wx:for="{{abc[item]}}" wx:key="index" wx:for-item="val">
+          <view class='projectbox'>
+            <!--第一部分  -->
+            <view class='project'>
+              <!-- <navigator url='../details/details?img={{taskImg}}&user={{user}}'> -->
+              <navigator url='../details/details?img={{val.img}}&user={{val.nickname}}&info={{val.info}}&title={{val.name}}&avatar={{val.avatar}}&price={{val.price}}&index={{val.whatever}}'>
+                <image class='headimage' src='/img/{{val.img}}'></image>
+                <view class='projecttext'>
+                  <text class='biaoti'>{{val.name}}</text>
+                  <text class='jianjie'>{{val.info}}</text>
+                  <image class='line1'></image>
+
+                  <view class='field'>
+                    <image class='shop' src='/image/shop.jpg'></image>
+                    <text class='owner'>{{val.nickname}}</text>
                   </view>
-                </navigator>
-              </view>
+
+                </view>
+
+                <view class='num'>{{val.price}}
+                  <text class='danwei'>以太币</text>
+                </view>
+              </navigator>
             </view>
+
           </view>
         </block>
-      </scroll-view>
+</block>
+
+
+
+    </scroll-view>
 
     </view>
   </swiper-item>

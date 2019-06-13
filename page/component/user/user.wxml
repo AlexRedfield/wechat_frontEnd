@@ -17,7 +17,7 @@
     <view class="orders-box">
         <view class="orders">用户余额
  
-        <text class="sum">50以太币</text>
+        <text class="sum">{{balance}}以太币</text>
         </view>
 
         <view class="orders-list" wx:for="{{orders}}" wx:key="index">

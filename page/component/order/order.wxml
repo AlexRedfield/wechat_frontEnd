@@ -9,34 +9,78 @@
   <swiper-item>
     <view class='projectbox'>
       <scroll-view class="hot-box" scroll-y="true">
-        <view class="orderDetails" wx:for="{{alreadyOrder}}" wx:key=" ">
+        <view class="orderDetails" wx:for="{{pendtoServe}}" wx:key=" ">
           <view class="orderListTitle">
-            <text class="userName">{{item.name}}</text>
+            <text class="userName">{{item.nickname}}</text>
 
           </view>
           <view class="orderListDetails">
             <view class="productImg">
-              <image src="{{item.url}}" background-size="cover"></image>
+              <image src="/img/{{item.img}}" background-size="cover"></image>
             </view>
             <view class="productInfo">
-              <view class="productTitle">玻璃擦洗</view>
-              <view class="productTime">预定时间: {{item.time}}</view>
-              <text class="productPrice">{{item.money}} </text>
+              <view class="productTitle">{{item.name}}</view>
+              <view class="productTime">预定时间: {{item.date}}</view>
+              <text class="productPrice">{{item.price}} </text>
               <text class="danwei">以太币</text>
             </view>
           </view>
           <view class="address">地址：{{item.address}}</view>
-          <button class="btn" bindtap='call1' data-item="{{item.address}}">取消订单</button>
+          <button class="btn" bindtap='cancel' data-item="{{item.whatever}}">取消订单</button>
         </view>
       </scroll-view>
     </view>
   </swiper-item>
 
   <swiper-item>
-    <view>nifashao</view>
+    <view class='projectbox'>
+      <scroll-view class="hot-box" scroll-y="true">
+        <view class="orderDetails" wx:for="{{pendtoPay}}" wx:key=" ">
+          <view class="orderListTitle">
+            <text class="userName">{{item.nickname}}</text>
+
+          </view>
+          <view class="orderListDetails">
+            <view class="productImg">
+              <image src="/img/{{item.img}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productTitle">{{item.name}}</view>
+              <view class="productTime">服务时间: {{item.date}}</view>
+              <text class="productPrice">{{item.price}} </text>
+              <text class="danwei">以太币</text>
+            </view>
+          </view>
+          <view class="address">地址：{{item.address}}</view>
+          <button class="btn" bindtap='pay' data-item="{{item.whatever}}">支付服务</button>
+        </view>
+      </scroll-view>
+    </view>
   </swiper-item>
 
   <swiper-item>
-    <view>阿非凡的</view>
+    <view class='projectbox'>
+      <scroll-view class="hot-box" scroll-y="true">
+        <view class="orderDetails" wx:for="{{finishOrder}}" wx:key=" ">
+          <view class="orderListTitle">
+            <text class="userName">{{item.nickname}}</text>
+
+          </view>
+          <view class="orderListDetails">
+            <view class="productImg">
+              <image src="/img/{{item.img}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productTitle">{{item.name}}</view>
+              <view class="productTime">服务时间: {{item.date}}</view>
+              <text class="productPrice">{{item.price}} </text>
+              <text class="danwei">以太币</text>
+            </view>
+          </view>
+          <view class="address">地址：{{item.address}}</view>
+          <button class="btn" bindtap='deleteS' data-item="{{item.whatever}}">删除订单</button>
+        </view>
+      </scroll-view>
+    </view>
   </swiper-item>
 </swiper>

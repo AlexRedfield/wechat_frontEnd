@@ -7,7 +7,8 @@ Page({
     nickname:'',
     hasAddress:false,
     address:{},
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    balance:""
   },
   onLoad(){
     var self = this;
@@ -40,8 +41,52 @@ Page({
       })
     }
 
-
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          var appid = 'wxa89285a741cd0adc'
+          var secret = '22739dcb3c40affc1ce039e0649f4fa8'
+          var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' + res.code + '&grant_type=authorization_code';
+          wx.request({
+            url: l,
+            data: {},
+            method: 'GET',
+            success: function (res) {
+              wx.request({
+                url: 'http://localhost:8080/' + 'balance',
+                method: 'post',
+                header: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                },
+                data: {
+                  user: res.data.openid,
+                },
+                success: res => {
+                  console.log(res.data)
+                  self.setData({
+                    balance: res.data
+                  })
+                }
+              })
+            }
+          });
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    })
   },
+
+  onPullDownRefresh() {
+    // 上拉刷新
+    if (!this.loading) {
+      this.onLoad()
+      wx.stopPullDownRefresh()
+    }
+  },
+
   onShow(){
     var self = this;
     /**
@@ -57,26 +102,9 @@ Page({
       }
     })
   },
-  /**
-   * 发起支付请求
-   */
-  payOrders(){
-    wx.requestPayment({
-      timeStamp: 'String1',
-      nonceStr: 'String2',
-      package: 'String3',
-      signType: 'MD5',
-      paySign: 'String4',
-      success: function(res){
-        console.log(res)
-      },
-      fail: function(res) {
-        wx.showModal({
-          title:'支付提示',
-          content:'<text>',
-          showCancel: false
-        })
-      }
-    })
-  }
+
+
+
 })
+
+module.exports =Page

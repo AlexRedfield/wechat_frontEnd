@@ -1,4 +1,5 @@
 var util = require('../../../util/util.js');
+
 Page({
     data: {
       category: [
@@ -18,7 +19,8 @@ Page({
       taskImg:"http://img.zcool.cn/community/01ca005b02587ba801218cf4fe698a.gif",
       taskInfo:[],
       taskInfo2: [],
-      taskInfos:[]
+      taskInfos:[],
+      abc: [],
     },
   //动态计算高度
     onLoad: function (options) {
@@ -36,26 +38,22 @@ Page({
           });
         }
       });
-
-
-    },
-    onReady(){
-        var self = this;
-        wx.request({
-            url:'http://www.gdfengshuo.com/api/wx/cate-detail.txt',
-            success(res){
-                //console.log(res.data)
-                //console.log(res.data[0])
-                self.setData({
-                    //detail : res.data.result
-                  detail: res.data
-                })
-            }
-        });
+      var self = this;
+      wx.request({
+        url: 'http://www.gdfengshuo.com/api/wx/cate-detail.txt',
+        success(res) {
+          //console.log(res.data)
+          //console.log(res.data[0])
+          self.setData({
+            //detail : res.data.result
+            detail: res.data
+          })
+        }
+      });
       let flag = 0, sort = "保洁清洗";
-      for(let i=0;i<6;i++){
-        util.reqTaskInfo(flag, self.data.category[i].name).then(res=>{
-          let index=i;
+      for (let i = 0; i < 6; i++) {
+        util.reqTaskInfo(flag, self.data.category[i].name).then(res => {
+          let index = i;
           var param = {};
           var string = 'taskInfos[' + i + ']';
           param[string] = res.data;
@@ -67,7 +65,21 @@ Page({
             //item:res.data
           })*/
         })
-    }
+      }
+      flag = 1
+      for (let i = 0; i < 6; i++) {
+        util.reqTaskInfo(flag, self.data.category[i].name).then(res => {
+          let index = i;
+          var param = {};
+          var string = 'abc[' + i + ']';
+          param[string] = res.data;
+          self.setData(param);
+        })
+      }
+
+    },
+    onReady(){
+        
     },
     switchTab(e){
         this.setData({
@@ -108,5 +120,10 @@ Page({
     var that = this;
     that.setData({ currentTab: e.detail.current });
 
-  } 
+  },
+  onShow(){
+    this.onLoad();  //跳转回该页面时刷新页面
+  }
+  
+
 })
